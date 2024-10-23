@@ -67,12 +67,17 @@ $conn->close();
     <section class="dashboard">
         <div class="profile-box">
             <h2>Your Profile</h2>
+<div class="donation-stats">
+<!-- Display User Information -->
+<p><strong>Name:</strong> <?php echo htmlspecialchars($donor['name']); ?></p>
+<p><strong>Location:</strong> <?php echo htmlspecialchars($donor['location']); ?></p>
+<p><strong>Blood Type:</strong> <?php echo htmlspecialchars($donor['blood_type']); ?></p>
 
-            <!-- Display Donation Statistics -->
-            <div class="donation-stats">
-                <p><strong>Total Donations:</strong> <?php echo $donation_stats['total_donations']; ?></p>
-                <p><strong>Last Donation Date:</strong> <?php echo $donation_stats['last_donation_date']; ?></p>
-            </div>
+<!-- Display Donation Statistics -->
+
+    <p><strong>Total Donations:</strong> <?php echo $total_donations; ?></p>
+    <p><strong>Last Donation Date:</strong> <?php echo $last_donation_date; ?></p>
+</div>
 
             <!-- Form to Update User Profile -->
             <form action="../backend/update_profile.php" method="POST">
@@ -94,9 +99,6 @@ $conn->close();
                 <label for="location">Location:</label>
                 <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($donor['location']); ?>" required>
 
-                <label for="medical_status">Medical Surveillance:</label>
-                <textarea id="medical_status" name="medical_status"><?php echo htmlspecialchars($donor['medical_status']); ?></textarea>
-
                 <button type="submit">Update Profile</button>
             </form>
         </div>
@@ -107,3 +109,4 @@ $conn->close();
     </footer>
 </body>
 </html>
+
