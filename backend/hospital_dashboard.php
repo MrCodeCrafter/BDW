@@ -25,12 +25,12 @@ if (!isset($_SESSION['donor_id'])) {
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="search.html">Search Blood Inventory</a></li>
-                <li><a href="admin_dashboard.html">Admin Dashboard</a></li>
-                <li><a href="donor_dashboard.html">Donor Dashboard</a></li>
-                <li><a href="recipient_dashboard.html">Recipient Dashboard</a></li>
-                <li><a href="login.html" class="btn">Login</a></li>
+                 <li><a href="../public/index.html">Home</a></li>
+                <li><a href="../public/search.html">Search Blood Inventory</a></li>
+                <li><a href="../public/admin_dashboard.html">Admin Dashboard</a></li>
+                <li><a href="../public/donor_dashboard.html">Donor Dashboard</a></li>
+                <li><a href="../public/recipient_dashboard.html">Recipient Dashboard</a></li>
+                <li><a href="../public/login.html" class="btn">Login</a></li>
             </ul>
         </nav>
     </header>
