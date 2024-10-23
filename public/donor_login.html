@@ -14,7 +14,7 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="donor_login.html">Donor Login</a></li>
-
+        </ul>
     </nav>
 
     <section class="form-section">
@@ -34,6 +34,16 @@
     <footer>
         <p>&copy; 2024 Blood Donation. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript to handle the pop-up on error -->
+    <script>
+        // Check if there's an error query parameter in the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error') && urlParams.get('error') === 'invalid_credentials') {
+            alert("Invalid email or password. Please try again."); // Basic JS alert pop-up
+        }
+    </script>
 </body>
 
 </html>
+
