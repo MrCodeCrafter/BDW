@@ -66,6 +66,14 @@ $conn->close();
 <body>
     <header>
         <h1>Welcome <?php echo htmlspecialchars($donor['name']); ?>!</h1>
+        <div class="navbar">
+            <div class="container nav-container">
+        <div class="nav-right">
+                    <img src="../public/images/logo.png" Logo" class="logo">
+                    <!-- Your logo here -->
+                </div>
+                </div>
+        </div>
     </header>
 
     <section class="dashboard">
