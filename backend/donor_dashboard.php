@@ -81,7 +81,7 @@ $conn->close();
             </div>
 
             <!-- Add Location Search Form -->
-            <h2>Search Available Hospitals Near To You</h2>
+            <h2>Search Hospitals</h2>
             <form method="POST" action="">
                 <label for="location">Enter Location:</label>
                 <input type="text" id="location" name="location" required>
