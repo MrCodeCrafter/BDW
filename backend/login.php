@@ -25,7 +25,7 @@ $user = $result->fetch_assoc();
 if ($user && password_verify($password, $user['password'])) {
     // Set session and redirect to dashboard
     $_SESSION['donor_id'] = $user['id'];
-    header("Location: ../donor_dashboard.php");
+    header("Location: donor_dashboard.php");
 } else {
     // Redirect back with error message
     header("Location: ../public/donor_login.html?error=invalid_credentials");
