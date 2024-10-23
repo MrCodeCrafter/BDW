@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Blood Donors</title>
+    <title>Search Blood Donors or Hospitals</title>
     <link rel="stylesheet" href="../public/styles.css">
 </head>
 <body>
@@ -24,13 +24,22 @@
     </header>
 
     <section class="form-section">
-        <h1>Search for Blood Donors</h1>
+        <h1>Search for Blood Donors or Hospitals</h1>
 
-        <!-- Make sure to properly capture the blood type from the URL -->
+        <!-- Form to search for either donors or hospitals -->
         <form action="search_blood.php" method="GET">
-            <input type="hidden" id="blood_type" name="blood_type" value="<?php echo $_GET['blood_type']; ?>" />
+            <label for="search_type">Search Type</label>
+            <select id="search_type" name="search_type" required>
+                <option value="donor">Donor</option>
+                <option value="hospital">Hospital</option>
+            </select>
+
+            <label for="blood_type">Blood Type</label>
+            <input type="text" id="blood_type" name="blood_type" value="<?php echo $_GET['blood_type']; ?>" required>
+
             <label for="location">Location</label>
             <input type="text" id="location" name="location" placeholder="Enter location" required>
+            
             <button type="submit">Search</button>
         </form>
     </section>
