@@ -27,7 +27,25 @@
         <div class="container">
             <h1>Blood Bank Inventory</h1>
 
-            <table>
+            <section class="verify-section">
+                <h2>Check Blood Inventory by Blood Type</h2>
+                <form action=../backend/get_inventory.php id="bloodTypeForm">
+                    <label for="blood_type">Blood Type:</label>
+                    <select id="blood_type" name="blood_type" required>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                    <button type="submit">Check Inventory</button>
+                </form>
+            </section>
+
+            <table id="inventory-table" style="display: none;">
                 <thead>
                     <tr>
                         <th>Blood Type</th>
@@ -35,27 +53,8 @@
                         <th>Expiry Date</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>O+</td>
-                        <td>15</td>
-                        <td>December 1, 2024</td>
-                    </tr>
-                    <tr>
-                        <td>A-</td>
-                        <td>10</td>
-                        <td>November 25, 2024</td>
-                    </tr>
-                    <tr>
-                        <td>B+</td>
-                        <td>5</td>
-                        <td>January 15, 2025</td>
-                    </tr>
-                    <tr>
-                        <td>AB-</td>
-                        <td>2</td>
-                        <td>December 10, 2024</td>
-                    </tr>
+                <tbody id="inventory-table-body">
+                    <!-- Blood inventory data will be injected here by JavaScript -->
                 </tbody>
             </table>
         </div>
@@ -64,5 +63,39 @@
     <footer>
         <p>&copy; 2024 Blood Donation. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById('bloodTypeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const bloodType = document.getElementById('blood_type').value;
+
+            // Fetch the blood inventory data based on selected blood type
+            fetch(../backend/get_inventory.php?blood_type=${bloodType})
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('inventory-table-body');
+                    tableBody.innerHTML = ''; // Clear existing data
+
+                    if (data.length > 0) {
+                        data.forEach(item => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${item.blood_type}</td>
+                                <td>${item.quantity}</td>
+                                <td>${item.expirydate}</td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                        document.getElementById('inventory-table').style.display = 'table'; // Show the table
+                    } else {
+                        // Handle no results found
+                        tableBody.innerHTML = '<tr><td colspan="3">No data found for the selected blood type.</td></tr>';
+                        document.getElementById('inventory-table').style.display = 'table'; // Show the table
+                    }
+                })
+                .catch(error => console.error('Error fetching inventory:', error));
+        });
+    </script>
 </body>
 </html>
