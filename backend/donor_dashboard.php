@@ -1,6 +1,4 @@
-
 <?php
-
 // Start session and check if the user is logged in
 session_start();
 if (!isset($_SESSION['donor_id'])) {
@@ -29,12 +27,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 $donor = $result->fetch_assoc();
 
-if (!$donor) {
-    // If no user data is found, redirect to login
-    header("Location: ../public/donor_login.html");
-    exit();
-}
-
 // Fetch donation statistics (Total Donations and Last Donation Date)
 $sql_donations = "SELECT SUM(quantity) AS total_donations, MAX(donation_date) AS last_donation_date FROM donations WHERE user_id = ?";
 $stmt_donations = $conn->prepare($sql_donations);
@@ -43,9 +35,21 @@ $stmt_donations->execute();
 $result_donations = $stmt_donations->get_result();
 $donation_stats = $result_donations->fetch_assoc();
 
-$total_donations = $donation_stats['total_donations'] ?? 0; // Default to 0 if no donations
-$last_donation_date = $donation_stats['last_donation_date'] ?? 'No donations yet'; // Handle null case
+$total_donations = $donation_stats['total_donations'] ?? 0;
+$last_donation_date = $donation_stats['last_donation_date'] ?? 'No donations yet';
 
+// Check if a location search has been submitted
+$search_results = [];
+if (isset($_POST['search_location'])) {
+    $location = $_POST['location'];
+    $sql_hospitals = "SELECT * FROM hospitals WHERE location LIKE ?";
+    $stmt_hospitals = $conn->prepare($sql_hospitals);
+    $search_param = "%" . $location . "%";
+    $stmt_hospitals->bind_param("s", $search_param);
+    $stmt_hospitals->execute();
+    $result_hospitals = $stmt_hospitals->get_result();
+    $search_results = $result_hospitals->fetch_all(MYSQLI_ASSOC);
+}
 
 // Close the database connection
 $conn->close();
@@ -67,40 +71,47 @@ $conn->close();
     <section class="dashboard">
         <div class="profile-box">
             <h2>Your Profile</h2>
-<div class="donation-stats">
-<!-- Display User Information -->
-<p><strong>Name:</strong> <?php echo htmlspecialchars($donor['name']); ?></p>
-<p><strong>Location:</strong> <?php echo htmlspecialchars($donor['location']); ?></p>
-<p><strong>Blood Type:</strong> <?php echo htmlspecialchars($donor['blood_type']); ?></p>
 
-<!-- Display Donation Statistics -->
+            <div class="donation-stats">
+                <p><strong>Name:</strong> <?php echo htmlspecialchars($donor['name']); ?></p>
+                <p><strong>Location:</strong> <?php echo htmlspecialchars($donor['location']); ?></p>
+                <p><strong>Blood Type:</strong> <?php echo htmlspecialchars($donor['blood_type']); ?></p>
+                <p><strong>Total Donations:</strong> <?php echo $total_donations; ?></p>
+                <p><strong>Last Donation Date:</strong> <?php echo $last_donation_date; ?></p>
+            </div>
 
-    <p><strong>Total Donations:</strong> <?php echo $total_donations; ?></p>
-    <p><strong>Last Donation Date:</strong> <?php echo $last_donation_date; ?></p>
-</div>
-
-            <!-- Form to Update User Profile -->
-            <form action="../backend/update_profile.php" method="POST">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($donor['name']); ?>" required>
-
-                <label for="blood_type">Blood Type:</label>
-                <select id="blood_type" name="blood_type" required>
-                    <option value="A+" <?php if ($donor['blood_type'] == 'A+') echo 'selected'; ?>>A+</option>
-                    <option value="A-" <?php if ($donor['blood_type'] == 'A-') echo 'selected'; ?>>A-</option>
-                    <option value="B+" <?php if ($donor['blood_type'] == 'B+') echo 'selected'; ?>>B+</option>
-                    <option value="B-" <?php if ($donor['blood_type'] == 'B-') echo 'selected'; ?>>B-</option>
-                    <option value="O+" <?php if ($donor['blood_type'] == 'O+') echo 'selected'; ?>>O+</option>
-                    <option value="O-" <?php if ($donor['blood_type'] == 'O-') echo 'selected'; ?>>O-</option>
-                    <option value="AB+" <?php if ($donor['blood_type'] == 'AB+') echo 'selected'; ?>>AB+</option>
-                    <option value="AB-" <?php if ($donor['blood_type'] == 'AB-') echo 'selected'; ?>>AB-</option>
-                </select>
-
-                <label for="location">Location:</label>
-                <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($donor['location']); ?>" required>
-
-                <button type="submit">Update Profile</button>
+            <!-- Add Location Search Form -->
+            <h2>Search Available Hospitals Near To You</h2>
+            <form method="POST" action="">
+                <label for="location">Enter Location:</label>
+                <input type="text" id="location" name="location" required>
+                <button type="submit" name="search_location">Search</button>
             </form>
+
+            <!-- Display Search Results -->
+            <?php if (!empty($search_results)) : ?>
+                <h3>Available Hospitals</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hospital Name</th>
+                            <th>Location</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($search_results as $hospital) : ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($hospital['hospital_name']); ?></td>
+                                <td><?php echo htmlspecialchars($hospital['location']); ?></td>
+                                <td><?php echo htmlspecialchars($hospital['email']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php elseif (isset($_POST['search_location'])): ?>
+                <p>No hospitals found in this location.</p>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -109,4 +120,3 @@ $conn->close();
     </footer>
 </body>
 </html>
-
