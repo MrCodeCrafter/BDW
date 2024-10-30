@@ -1066,8 +1066,12 @@ ul {
 }
 
 .modal {
+<<<<<<< HEAD
     display: none;
     /* Hidden by default */
+=======
+    display: none; /* Hidden by default */
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
     position: fixed;
     z-index: 1;
     left: 0;
@@ -1075,8 +1079,12 @@ ul {
     width: 100%;
     height: 100%;
     overflow: auto;
+<<<<<<< HEAD
     background-color: rgba(0, 0, 0, 0.5);
     /* Black background with transparency */
+=======
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
 }
 
 .modal-content {
@@ -1101,6 +1109,7 @@ ul {
     text-decoration: none;
     cursor: pointer;
 }
+<<<<<<< HEAD
 
 .form-container {
     display: flex;
@@ -1289,3 +1298,5 @@ footer {
     background-color: #0099cc;
     /* Different color for about */
 }
+=======
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7

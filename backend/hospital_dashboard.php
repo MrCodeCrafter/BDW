@@ -25,7 +25,11 @@ if (!isset($_SESSION['donor_id'])) {
         </div>
         <nav>
             <ul>
+<<<<<<< HEAD
                 <li><a href="../public/index.html">Home</a></li>
+=======
+                 <li><a href="../public/index.html">Home</a></li>
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
                 <li><a href="../public/search.html">Search Blood Inventory</a></li>
                 <li><a href="../public/admin_dashboard.html">Admin Dashboard</a></li>
                 <li><a href="../public/donor_dashboard.html">Donor Dashboard</a></li>

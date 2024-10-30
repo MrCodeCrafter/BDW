@@ -15,7 +15,13 @@
         <nav>
             <ul>
                 <li><a href="../public/index.html">Home</a></li>
+<<<<<<< HEAD
                 <li><a href="../public/login.html">Login</a></li>
+=======
+                <li><a href="../public/inventory.html">Blood Inventory</a></li>
+                <li><a href="../public/donor_dashboard.html">Donor</a></li>
+                <li><a href="../public/hospital_dashboard.html">Hospital</a></li>
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
                 <li><a href="../public/register.html" class="btn">Register</a></li>
             </ul>
         </nav>
@@ -33,6 +39,7 @@
             </select>
 
             <label for="blood_type">Blood Type</label>
+<<<<<<< HEAD
 <select id="blood_type" name="blood_type" required>
     <option value="" disabled <?php echo empty($_GET['blood_type']) ? 'selected' : ''; ?>>Select Blood Type</option>
     <option value="A+" <?php echo ($_GET['blood_type'] == 'A+') ? 'selected' : ''; ?>>A+</option>
@@ -45,6 +52,9 @@
     <option value="AB-" <?php echo ($_GET['blood_type'] == 'AB-') ? 'selected' : ''; ?>>AB-</option>
 </select>
 
+=======
+            <input type="text" id="blood_type" name="blood_type" value="<?php echo $_GET['blood_type']; ?>" required>
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
 
             <label for="location">Location</label>
             <input type="text" id="location" name="location" placeholder="Enter location" required>

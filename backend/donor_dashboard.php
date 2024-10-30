@@ -65,6 +65,7 @@ $conn->close();
 </head>
 <body>
     <header>
+<<<<<<< HEAD
         
         <nav>
         <ul>
@@ -72,15 +73,22 @@ $conn->close();
             	<li><a href="logout.php">Login Out</a></li>
         </ul>
     </nav>
+=======
+        <h1>Welcome <?php echo htmlspecialchars($donor['name']); ?>!</h1>
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
 
  
     </header>
 
     <section class="dashboard">
         <div class="profile-box">
+<<<<<<< HEAD
          <h2>Your Profile</h2><br>
         <b><font size="10">Welcome <?php echo htmlspecialchars($donor['name']); ?>!</font></b><br><br>
            
+=======
+            <h2>Your Profile</h2>
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
 
             <div class="donation-stats">
                 <p><strong>Name:</strong> <?php echo htmlspecialchars($donor['name']); ?></p>

@@ -31,7 +31,11 @@ if ($user && password_verify($password, $user['password'])) {
     // Set session and redirect to dashboard
     $_SESSION['staff_id'] = $user['id'];
     $_SESSION['staff_name'] = $user['name'];
+<<<<<<< HEAD
     header("Location: ../public/inventory.html");
+=======
+    header("Location: ../public/hospital_dashboard.html");
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
 } else {
     // Redirect back with error message
     header("Location: ../public/hospital_login.html?error=invalid_credentials");

@@ -54,6 +54,10 @@ CREATE TABLE `donations` (
   `donation_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
 -- --------------------------------------------------------
 
 --
@@ -76,10 +80,18 @@ CREATE TABLE `hospitals` (
 
 DROP TABLE IF EXISTS `hospitalstaffs`;
 CREATE TABLE `hospitalstaffs` (
+<<<<<<< HEAD
   `hsid` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `hosp_id` int(11) NOT NULL,
   `contacts` varchar(20) DEFAULT NULL
+=======
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    hospital_id VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+>>>>>>> 60618cd3bb892c608b7a5139251492f7fc01f2f7
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
