@@ -1,11 +1,22 @@
+
+<?php
+
+// Start session and check if the user is logged in
+session_start();
+if (!isset($_SESSION['donor_id'])) {
+    // Redirect to login if not logged in
+    header("Location: ../public/donor_login.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=../backend/hospital_dashboard.php" />
     <title>Hospital Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../public/styles.css">
 </head>
 <body>
     <header>
@@ -14,12 +25,12 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="search.html">Search Blood Inventory</a></li>
-                <li><a href="admin_dashboard.html">Admin Dashboard</a></li>
-                <li><a href="donor_dashboard.html">Donor Dashboard</a></li>
-                <li><a href="recipient_dashboard.html">Recipient Dashboard</a></li>
-                <li><a href="login.html" class="btn">Login</a></li>
+                <li><a href="../public/index.html">Home</a></li>
+                <li><a href="../public/search.html">Search Blood Inventory</a></li>
+                <li><a href="../public/admin_dashboard.html">Admin Dashboard</a></li>
+                <li><a href="../public/donor_dashboard.html">Donor Dashboard</a></li>
+                <li><a href="../public/recipient_dashboard.html">Recipient Dashboard</a></li>
+                <li><a href="../public/login.html" class="btn">Login</a></li>
             </ul>
         </nav>
     </header>

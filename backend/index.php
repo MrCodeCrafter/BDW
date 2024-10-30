@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=../backend/index.php" />
     <title>Blood Donation</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../public/styles.css">
 </head>
-
 <body>
-    <header>
+
+<?php
+session_start();
+$is_logged_in = isset($_SESSION['donor_id']) || isset($_SESSION['staff_id']);
+?>
+
+<header>
         <div class="navbar">
             <div class="container nav-container">
                 <input class="checkbox" type="checkbox" name="" id="" />
@@ -20,30 +23,35 @@
                     <span class="line line3"></span>
                 </div>
                 <div class="nav-right">
-                    <img src="images/logo.png" Logo" class="logo">
+                    <img src="../public/images/logo.png" Logo" class="logo">
                     <!-- Your logo here -->
                 </div>
                 <div class="menu-items">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html" class="btn">Register as Donor</a></li>
+                    <li><a href="../public/index.html" class="active">Home</a></li>
+                    
+                <?php if ($is_logged_in): ?>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="../public/login.html">Login</a></li>
+                <?php endif; ?>
+                    <li><a href="../public/register.html" class="btn">Register as Donor</a></li>
                     <!-- Search Bar in Nav Bar -->
                     <div>
-
-                        <form action="../backend/search.php" method="GET">
-                            <label for="blood_type">Select Blood Type:</label>
-                            <select id="blood_type" name="blood_type" required>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                            </select>
-                            <button type="submit">Search</button>
-                        </form>
+                    
+                        <form action="search.php" method="GET">
+    <label for="blood_type">Select Blood Type:</label>
+    <select id="blood_type" name="blood_type" required>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+    </select>
+    <button type="submit">Search</button>
+</form>
 
                     </div>
                 </div>
@@ -56,9 +64,8 @@
         <div class="hero-text">
             <h1>Donate Blood, Save Lives</h1>
             <p>Join our community of life-saving blood donors and help those in need. Become a donor today!</p>
-            <a href="register.html" class="btn">Register as Donor</a>
-            <a href="staff.html" class="btn">Register as Staff</a>
-            <a href="about.html" class="btn">About us</a>
+            <a href="../public/register.html" class="btn">Register as Donor</a>
+            <a href="../public/staff.html" class="btn">Register as Staff</a>
         </div>
     </section>
 

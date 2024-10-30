@@ -32,7 +32,6 @@ nav ul {
     display: flex;
     justify-content: center;
 
-
 }
 
 .nav-right img {
@@ -438,7 +437,7 @@ footer {
 .form-section h1 {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     margin-bottom: 20px;
     /* Adjust this value to control how far above the form the heading is */
     position: relative;
@@ -1064,4 +1063,229 @@ ul {
     /* Ensure feedback form is above the background */
     position: relative;
     /* Positioning to maintain hierarchy */
+}
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with transparency */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-container {
+    display: flex;
+    gap: 20px;
+    /* Space between forms */
+    justify-content: space-between;
+}
+
+.check-inventory-form,
+.add-donation-form {
+    flex: 1;
+    /* Distribute equal width */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    overflow: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 2rem;
+    background: #333;
+    color: #fff;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
+.home-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.7rem 1.2rem;
+    background-color: #ff6f61;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.home-btn:hover {
+    background-color: #ff4a36;
+}
+
+.team-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+.team-member {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 100%;
+    transition: transform 0.3s;
+}
+
+.team-member h2 {
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.team-member a {
+    color: #ff6f61;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+}
+
+.college {
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+/* Background Animation */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 111, 97, 0.2);
+    animation: animate 10s linear infinite;
+}
+
+.circle:nth-child(1) {
+    width: 100px;
+    height: 100px;
+    bottom: -50px;
+    left: -50px;
+}
+
+.circle:nth-child(2) {
+    width: 200px;
+    height: 200px;
+    top: -100px;
+    right: -100px;
+}
+
+.circle:nth-child(3) {
+    width: 150px;
+    height: 150px;
+    bottom: 200px;
+    left: 200px;
+    background: rgba(0, 123, 255, 0.2);
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+.hero-text .btn {
+    background-color: #fe9400;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Specific hover effects */
+.hero-text .btn-staff:hover {
+    background-color: #e07d00;
+    /* Slightly darker for staff */
+}
+
+.hero-text .btn-about:hover {
+    background-color: #0099cc;
+    /* Different color for about */
 }
