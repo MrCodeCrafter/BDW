@@ -1,6 +1,3 @@
-Here's a super cool README template for your GitHub repository that clearly outlines the project details, instructions, and more. You can customize it further according to your project's specifics.
-
-```markdown
 # Blood Donation Management System
 
 ![Blood Donation Logo](public/images/logo.png)
